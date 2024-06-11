@@ -18,6 +18,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
 # https://googlechromelabs.github.io/chrome-for-testing/#stable
 # https://github.com/GoogleChromeLabs/chrome-for-testing#json-api-endpoints
+# https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json
 
 warnings.filterwarnings("ignore")
 
