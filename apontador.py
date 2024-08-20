@@ -118,7 +118,7 @@ def acessar_innovaro():
 def login(nav):
     #logando 
     WebDriverWait(nav, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="username"]'))).send_keys("luan araujo")
-    WebDriverWait(nav, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="password"]'))).send_keys("luanaraujo6")
+    WebDriverWait(nav, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="password"]'))).send_keys("luanaraujo7")
 
     time.sleep(2)
 
@@ -1319,8 +1319,10 @@ def preenchendo_serra(nav, data, pessoa, peca, qtde, wks1, c, i):
 
         try:
             iframes(nav)
+            print("vai clicar")
             WebDriverWait(nav, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="confirm"]'))).click()
             time.sleep(1.5)
+            print("erro ao clicar")
             webdriver.ActionChains(nav).send_keys(Keys.ESCAPE).perform()
             time.sleep(1.5)
             webdriver.ActionChains(nav).send_keys(Keys.ENTER).perform()
@@ -3261,7 +3263,7 @@ def funcao_main():
             if today != 1:
 
                 datas = [data_hoje(),  data_ontem()]#, data_sabado()]
-                #datas = [data_hoje()]#, data_sabado()]
+                # datas = ['13/08/2024', '14/08/2024','15/08/2024']
 
             else:
 

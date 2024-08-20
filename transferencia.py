@@ -3079,283 +3079,224 @@ while True:
 
         while True:
             
-            # for d in range(len(datas)):
+            for d in range(len(datas)):
                 
-            #     time.sleep(3)
+                time.sleep(3)
                 
-            #     data = datas[d]
-            #     #data = data_dia_1
-            #     #data = data_ontem()
-            #     #data = '01/02/2023'
+                data = datas[d]
+                #data = data_dia_1
+                #data = data_ontem()
+                #data = '01/02/2023'
                 
-            #     ######### CONSULTAR SALDO ###########
+                ######### CONSULTAR SALDO ###########
                 
-            #     menu_innovaro(nav)
+                menu_innovaro(nav)
 
-            #     print("Verificando saldo da serra")
+                print("Verificando saldo da serra")
 
-            #     # wks2.update("O" + "5", 'SALDO SERRA: ' + data) 
+                # wks2.update("O" + "5", 'SALDO SERRA: ' + data) 
 
-            #     time.sleep(2)
+                time.sleep(2)
 
-            #     df_final = consulta_saldo(data, nav)
-            #     df_final = df_final.reset_index(drop=True)
+                df_final = consulta_saldo(data, nav)
+                df_final = df_final.reset_index(drop=True)
                 
-            #     time.sleep(2)
+                time.sleep(2)
 
-            #     fechar_menu_consulta(nav)
+                fechar_menu_consulta(nav)
 
-            #     ######## LOOP TRANSFERÊNCIA ###########
+                ######## LOOP TRANSFERÊNCIA ###########
 
-            #     print("Indo para transferencia de tubos")
+                print("Indo para transferencia de tubos")
 
-            #     # wks2.update("O" + "5", 'TRANSF. SERRA: ' + data) 
+                # wks2.update("O" + "5", 'TRANSF. SERRA: ' + data) 
 
-            #     time.sleep(2)
+                time.sleep(2)
 
-            #     menu_transf(nav)
+                menu_transf(nav)
 
-            #     wks1, base, base_filtrada, transferidas = planilha_serra_transf(data, filename)
+                wks1, base, base_filtrada, transferidas = planilha_serra_transf(data, filename)
                 
-            #     transferidas = transferidas.reset_index()
+                transferidas = transferidas.reset_index()
 
-            #     c = 3
+                c = 3
 
-            #     i = 0
+                i = 0
 
-            #     if not len(df_final) == 0:
+                if not len(df_final) == 0:
 
-            #         if not int(len(transferidas)) == 0:
+                    if not int(len(transferidas)) == 0:
                             
-            #             df_final = df_final.reset_index(drop=True)
-            #             df_final['comparar2'] = ''
+                        df_final = df_final.reset_index(drop=True)
+                        df_final['comparar2'] = ''
 
-            #             for saldo in range(len(df_final)):
+                        for saldo in range(len(df_final)):
                             
-            #                 try:
-            #                     if df_final['MAT PRIMA'][saldo] == df_final['MAT PRIMA'][saldo-1]:
-            #                         df_final['comparar2'][saldo] = df_final['comparar2'][saldo-1] - df_final['PESO BARRAS'][saldo]
+                            try:
+                                if df_final['MAT PRIMA'][saldo] == df_final['MAT PRIMA'][saldo-1]:
+                                    df_final['comparar2'][saldo] = df_final['comparar2'][saldo-1] - df_final['PESO BARRAS'][saldo]
                                 
-            #                         if df_final['comparar2'][saldo] >= df_final['PESO'][saldo]:
-            #                             df_final['comparar'][saldo] = 'True'
-            #                         else:
-            #                             df_final['comparar'][saldo] = 'False'
-            #                     else:
-            #                         df_final['comparar2'][saldo] = df_final['Saldo'][saldo] - df_final['PESO'][saldo]
+                                    if df_final['comparar2'][saldo] >= df_final['PESO'][saldo]:
+                                        df_final['comparar'][saldo] = 'True'
+                                    else:
+                                        df_final['comparar'][saldo] = 'False'
+                                else:
+                                    df_final['comparar2'][saldo] = df_final['Saldo'][saldo] - df_final['PESO'][saldo]
                                     
-            #                         if df_final['Saldo'][saldo] >= df_final['PESO'][saldo]:
-            #                             df_final['comparar'][saldo] = 'True'
-            #                         else:
-            #                             df_final['comparar'][saldo] = 'False'
-            #                 except:
-            #                     df_final['comparar2'][saldo] = df_final['Saldo'][saldo] - df_final['PESO'][saldo]
+                                    if df_final['Saldo'][saldo] >= df_final['PESO'][saldo]:
+                                        df_final['comparar'][saldo] = 'True'
+                                    else:
+                                        df_final['comparar'][saldo] = 'False'
+                            except:
+                                df_final['comparar2'][saldo] = df_final['Saldo'][saldo] - df_final['PESO'][saldo]
                                 
-            #                     if df_final['Saldo'][saldo] >= df_final['PESO'][saldo]:
-            #                         df_final['comparar'][saldo] = 'True'
-            #                     else:
-            #                         df_final['comparar'][saldo] = 'False'
+                                if df_final['Saldo'][saldo] >= df_final['PESO'][saldo]:
+                                    df_final['comparar'][saldo] = 'True'
+                                else:
+                                    df_final['comparar'][saldo] = 'False'
 
-            #             df_final = df_final[df_final['comparar'] == 'True']
+                        df_final = df_final[df_final['comparar'] == 'True']
                         
-            #             for i in range(len(df_final)): # serra
+                        for i in range(len(df_final)): # serra
 
-            #                 print("i: ", i)
-            #                 peca = df_final['MAT PRIMA'][i]
-            #                 qtde = str(df_final['PESO'][i])
-            #                 data = df_final['DATA'][i]
-            #                 c = preenchendo_serra_transf(nav,data,peca,qtde,wks1,c,i)
-            #                 time.sleep(1.5)           
-            #                 print("c: ", c)
+                            print("i: ", i)
+                            peca = df_final['MAT PRIMA'][i]
+                            qtde = str(df_final['PESO'][i])
+                            data = df_final['DATA'][i]
+                            c = preenchendo_serra_transf(nav,data,peca,qtde,wks1,c,i)
+                            time.sleep(1.5)           
+                            print("c: ", c)
 
-            #                 if c == 23:
-            #                     c = 21           
+                            if c == 23:
+                                c = 21           
 
-            #             time.sleep(1.5)
+                        time.sleep(1.5)
 
-            #             selecionar_todos(nav,data)
+                        selecionar_todos(nav,data)
 
-            #             time.sleep(1.5)
+                        time.sleep(1.5)
 
-            #             for j in range(len(df_final)):
-            #                 try:
-            #                     linha_transferida = df_final['index'][j]
-            #                     wks1.update("I" + str(linha_transferida+1), 'OK TRANSF - ' + data_hoje() + ' ' + hora_atual()) 
-            #                     time.sleep(1.5)
-            #                 except:
-            #                     pass
+                        for j in range(len(df_final)):
+                            try:
+                                linha_transferida = df_final['index'][j]
+                                wks1.update("I" + str(linha_transferida+1), 'OK TRANSF - ' + data_hoje() + ' ' + hora_atual()) 
+                                time.sleep(1.5)
+                            except:
+                                pass
 
-            #     ######### CONSULTAR SALDO CORTE ###########
+                ######### CONSULTAR SALDO CORTE ###########
 
-            #     print("Verificando saldo de corte")
+                print("Verificando saldo de corte")
                 
-            #     # wks2.update("O" + "5", 'SALDO CORTE: ' + data) 
+                # wks2.update("O" + "5", 'SALDO CORTE: ' + data) 
 
-            #     time.sleep(2)
+                time.sleep(2)
 
-            #     #fechando aba anterior
-            #     nav.switch_to.default_content()
-            #     time.sleep(1.5)
+                #fechando aba anterior
+                nav.switch_to.default_content()
+                time.sleep(1.5)
 
-            #     menu_innovaro(nav)
+                menu_innovaro(nav)
 
-            #     time.sleep(1)
+                time.sleep(1)
 
-            #     df_final = consulta_saldo_chapas(data, nav)
-            #     df_final = df_final.reset_index(drop=True)
+                df_final = consulta_saldo_chapas(data, nav)
+                df_final = df_final.reset_index(drop=True)
                 
-            #     time.sleep(2)
+                time.sleep(2)
 
-            #     fechar_menu_consulta(nav)
+                fechar_menu_consulta(nav)
 
-            #     print("indo para transferencia de chapas")
+                print("indo para transferencia de chapas")
 
-            #     # wks2.update("O" + "5", 'TRANSF. CORTE: ' + data) 
+                # wks2.update("O" + "5", 'TRANSF. CORTE: ' + data) 
 
-            #     c = 3
+                c = 3
 
-            #     i = 0
+                i = 0
 
-            #     menu_transf(nav)
+                menu_transf(nav)
 
-            #     time.sleep(2)
+                time.sleep(2)
 
-            #     wks1, base, base_filtrada = planilha_corte_transf(data, filename)
+                wks1, base, base_filtrada = planilha_corte_transf(data, filename)
 
-            #     if not len(df_final) == 0:
+                if not len(df_final) == 0:
 
-            #         df_final['comparar2'] = ''
+                    df_final['comparar2'] = ''
                         
-            #         for saldo in range(len(df_final)):
+                    for saldo in range(len(df_final)):
                         
-            #             try:
-            #                 if df_final['Código Chapa'][saldo] == df_final['Código Chapa'][saldo-1]:
-            #                     df_final['comparar2'][saldo] = df_final['comparar2'][saldo-1] - df_final['Peso'][saldo]
+                        try:
+                            if df_final['Código Chapa'][saldo] == df_final['Código Chapa'][saldo-1]:
+                                df_final['comparar2'][saldo] = df_final['comparar2'][saldo-1] - df_final['Peso'][saldo]
                             
-            #                     if df_final['comparar2'][saldo] >= df_final['Peso'][saldo]:
-            #                         df_final['comparar'][saldo] = 'True'
-            #                     else:
-            #                         df_final['comparar'][saldo] = 'False'
-            #                 else:
-            #                     df_final['comparar2'][saldo] = df_final['Saldo'][saldo] - df_final['Peso'][saldo]
+                                if df_final['comparar2'][saldo] >= df_final['Peso'][saldo]:
+                                    df_final['comparar'][saldo] = 'True'
+                                else:
+                                    df_final['comparar'][saldo] = 'False'
+                            else:
+                                df_final['comparar2'][saldo] = df_final['Saldo'][saldo] - df_final['Peso'][saldo]
                                 
-            #                     if df_final['Saldo'][saldo] >= df_final['Peso'][saldo]:
-            #                         df_final['comparar'][saldo] = 'True'
-            #                     else:
-            #                         df_final['comparar'][saldo] = 'False'
-            #             except:
-            #                 df_final['comparar2'][saldo] = df_final['Saldo'][saldo] - df_final['Peso'][saldo]
+                                if df_final['Saldo'][saldo] >= df_final['Peso'][saldo]:
+                                    df_final['comparar'][saldo] = 'True'
+                                else:
+                                    df_final['comparar'][saldo] = 'False'
+                        except:
+                            df_final['comparar2'][saldo] = df_final['Saldo'][saldo] - df_final['Peso'][saldo]
                             
-            #                 if df_final['Saldo'][saldo] >= df_final['Peso'][saldo]:
-            #                     df_final['comparar'][saldo] = 'True'
-            #                 else:
-            #                     df_final['comparar'][saldo] = 'False'
+                            if df_final['Saldo'][saldo] >= df_final['Peso'][saldo]:
+                                df_final['comparar'][saldo] = 'True'
+                            else:
+                                df_final['comparar'][saldo] = 'False'
 
-            #         df_final = df_final[df_final['comparar'] == 'True']
+                    df_final = df_final[df_final['comparar'] == 'True']
                     
-            #         for i in range(len(df_final)):
-            #             print("i: ", i)
-            #             try:
-            #                 peca = df_final['Código Chapa'][i]
-            #                 qtde = str(df_final['Peso'][i])
-            #                 data = df_final['Data'][i]
-            #                 c = preenchendo_corte_transf(nav,data,peca,qtde,wks1,c,i)   
-            #                 time.sleep(1.5)         
-            #                 print("c: ", c)
+                    for i in range(len(df_final)):
+                        print("i: ", i)
+                        try:
+                            peca = df_final['Código Chapa'][i]
+                            qtde = str(df_final['Peso'][i])
+                            data = df_final['Data'][i]
+                            c = preenchendo_corte_transf(nav,data,peca,qtde,wks1,c,i)   
+                            time.sleep(1.5)         
+                            print("c: ", c)
 
-            #                 if c == 23:
-            #                     c = 21
+                            if c == 23:
+                                c = 21
                             
-            #                 nav.delete_all_cookies() 
+                            nav.delete_all_cookies() 
 
-            #             except:
-            #                 pass
+                        except:
+                            pass
 
-            #         time.sleep(1.5)
+                    time.sleep(1.5)
                     
-            #         selecionar_todos(nav,data)
+                    selecionar_todos(nav,data)
                     
-            #         time.sleep(1.5)
+                    time.sleep(1.5)
 
-            #         for j in range(len(df_final)):
-            #             try:
-            #                 linha_transferida = df_final['index'][j]
-            #                 wks1.update("L" + str(linha_transferida+1), 'OK ROBS ' + data_hoje() + ' ' + hora_atual()) 
-            #                 time.sleep(1.5)
-            #             except:
-            #                 pass
+                    for j in range(len(df_final)):
+                        try:
+                            linha_transferida = df_final['index'][j]
+                            wks1.update("L" + str(linha_transferida+1), 'OK ROBS ' + data_hoje() + ' ' + hora_atual()) 
+                            time.sleep(1.5)
+                        except:
+                            pass
 
-            #     fechar_menu_transf(nav)
+                fechar_menu_transf(nav)
 
-            #     time.sleep(2)            
+                time.sleep(2)            
 
-            #     try:
-            #         fechar_menu_apont(nav)
-            #     except:
-            #         pass
+                try:
+                    fechar_menu_apont(nav)
+                except:
+                    pass
 
-            #     try:
-            #         fechar_tabs(nav)
-            #     except:
-            #         pass
-        
-            # Realizar download saldo de recurso
-            iframes(nav)
-            menu_innovaro(nav)
-            time.sleep(1)
-
-            navegar_consulta(nav)
-            time.sleep(1)
-
-            iframes(nav)
-            time.sleep(1)
-            
-            input_data(nav)
-            time.sleep(1)
-
-            input_deposito(nav)
-            time.sleep(1)
-            
-            limpar_recursos(nav)
-            time.sleep(1)
-            
-            inserir_agrupamentos_almox(nav)
-            time.sleep(1)
-            
-            inputar_recurso(nav)
-            time.sleep(5)
-            
-            inserir_gspread()
-            time.sleep(5)
-
-            fechar_menu_consulta(nav)
-            fechar_estoque(nav)
-            fechar_tabs(nav)
-
-            #download saldo de recurso para levantamento
-            navegar_consulta(nav)
-            time.sleep(1)
-
-            iframes(nav)
-            time.sleep(1)
-            
-            input_deposito_levantamento(nav)
-            time.sleep(1)
-
-            limpar_recursos(nav)
-            time.sleep(1)
-
-            inserir_agrupamentos_levantamento(nav)
-            time.sleep(1)
-
-            exportar_2(nav)
-            time.sleep(1)
-
-            inserir_gspread_saldo_levantamento()
-            time.sleep(1)
-            
-            fechar_menu_consulta(nav)
-            fechar_estoque(nav)
-            fechar_tabs(nav)
+                try:
+                    fechar_tabs(nav)
+                except:
+                    pass
 
     except:
         nav.close()
